@@ -1,5 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+import { api } from "@/trpc/react";
 
 import { getLocalisedTime } from "@/utils/helpers/getLocalisedTime";
 
@@ -18,7 +21,11 @@ const buttonStyle =
 
 const githubLink = "https://github.com/thenameisajay";
 
-export default async function Home() {
+export default function Home() {
+  const { data, isPending, isError } = api.check.check.useQuery(undefined);
+
+  console.info({ data, isPending, isError });
+
   const PageBanner = () => {
     return (
       <>
