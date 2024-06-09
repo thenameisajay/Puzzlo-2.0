@@ -1,12 +1,17 @@
 import "@/styles/globals.css";
-
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { TRPCReactProvider } from "@/trpc/react";
+import { siteConfig } from "@/data/site/siteConfig";
 
-export const metadata = {
-  title: "Puzzlo",
-  description: "Every day, new password.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  applicationName: siteConfig.title,
+
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+
+  creator: siteConfig.creator,
 };
 
 const inter = Inter({ subsets: ["latin"] });
