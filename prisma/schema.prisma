@@ -2,19 +2,31 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Leaderboard {
+  id          Int                @id @default(autoincrement())
+  date        DateTime
+  password    Int
+  leaderboard LeaderboardEntry[]
 
-    @@index([name])
+  @@map("leaderboards")
+}
+
+model LeaderboardEntry {
+  id            Int         @id @default(autoincrement())
+  username      String
+  numberOfTries Int
+  timeTaken     Int
+  score         Int
+  leaderboardId Int
+  leaderboard   Leaderboard @relation(fields: [leaderboardId], references: [id])
+
+  @@map("leaderboard_entries")
 }
