@@ -7,10 +7,8 @@ import { siteConfig } from "@/data/site/siteConfig";
 export const metadata: Metadata = {
   title: siteConfig.title,
   applicationName: siteConfig.title,
-
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-
   creator: siteConfig.creator,
 };
 

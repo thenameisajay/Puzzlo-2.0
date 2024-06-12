@@ -14,7 +14,8 @@ export const siteConfig = {
     "password",
     "puzzle",
   ],
-  creator: "thenameisajay - https://github.com/thenameisajay",
+  creator:
+    "thenameisajay - https://github.com/thenameisajay , Furkan - https://github.com/frkntkny",
 };
 
 export type SiteConfig = typeof siteConfig;
