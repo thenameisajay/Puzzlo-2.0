@@ -29,7 +29,7 @@ export default function Home() {
   const PageBanner = () => {
     return (
       <>
-        <h1 className=" relative  bottom-28 bg-inherit text-7xl font-bold  text-white md:text-8xl">
+        <h1 className=" relative  bottom-28 bg-inherit text-7xl  font-extrabold    text-white md:text-8xl">
           {title}
         </h1>
         <p className=" 8bg-inherit relative    bottom-24  text-2xl font-bold text-gray-700     md:text-3xl">
