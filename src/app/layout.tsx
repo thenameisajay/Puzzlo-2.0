@@ -1,9 +1,8 @@
-import "@/styles/globals.css";
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-
-import { TRPCReactProvider } from "@/trpc/react";
-import { siteConfig } from "@/data/site/siteConfig";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import { siteConfig } from '@/data/site/siteConfig';
+import '@/styles/globals.css';
+import { TRPCReactProvider } from '@/trpc/react';
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -13,10 +12,9 @@ export const metadata: Metadata = {
   creator: siteConfig.creator,
 };
 
-
 const MonaSans = localFont({
-  src: "./Mona-Sans.woff2",
-  display: "swap",
+  src: './Mona-Sans.woff2',
+  display: 'swap',
 });
 
 export default function RootLayout({
@@ -25,7 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className= {`min-h-dvh  w-screen  bg-sky-500 ${MonaSans.className}` }>
+    <html
+      lang="en"
+      className={`min-h-dvh  w-screen  bg-sky-500 ${MonaSans.className}`}
+    >
       <body>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>

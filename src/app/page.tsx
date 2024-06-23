@@ -1,25 +1,24 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+'use client';
 
-import { api } from "@/trpc/react";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { api } from '@/trpc/react';
+import { getLocalisedTime } from '@/utils/helpers/getLocalisedTime';
 
-import { getLocalisedTime } from "@/utils/helpers/getLocalisedTime";
+const title = 'PUZZLO';
 
-const title = "PUZZLO";
+const description = 'Every day, new password.';
 
-const description = "Every day, new password.";
+const howToPlayHref = '/how-to-play';
 
-const howToPlayHref = "/how-to-play";
+const scoreboardHref = '/scoreboard';
 
-const scoreboardHref = "/scoreboard";
-
-const playHref = "/play";
+const playHref = '/play';
 
 const buttonStyle =
-  "bg-yellow-500  rounded-full  p-7  hover:bg-yello-600 hover:text-white  text-lg lg:text-2xl md:text-xl font-bold text-black";
+  'bg-yellow-500  rounded-full  p-7  hover:bg-yello-600 hover:text-white  text-lg lg:text-2xl md:text-xl font-bold text-black';
 
-const githubLink = "https://github.com/thenameisajay";
+const githubLink = 'https://github.com/thenameisajay';
 
 export default function Home() {
   const { data, isPending, isError } = api.check.check.useQuery(undefined);
@@ -64,12 +63,12 @@ export default function Home() {
       <div className="absolute bottom-0 flex w-full flex-col items-center justify-center">
         <footer className=" relative  bottom-0  mx-4  my-4  w-64 rounded-full border border-slate-500 p-3  text-center  text-black  hover:bg-slate-100  focus:bg-slate-100 sm:p-2  ">
           <p className=" text-xs">
-            <span className="text-base">&copy;</span>{" "}
+            <span className="text-base">&copy;</span>{' '}
             <span className="  font-semibold">
-              {" "}
+              {' '}
               {getLocalisedTime(new Date())}
             </span>
-            ,{" "}
+            ,{' '}
             <a
               href={githubLink}
               target="_blank"
