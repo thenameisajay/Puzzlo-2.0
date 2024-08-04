@@ -1,15 +1,21 @@
-import "@/styles/globals.css";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import { siteConfig } from '@/data/site/siteConfig';
+import '@/styles/globals.css';
+import { TRPCReactProvider } from '@/trpc/react';
 
-import { Inter } from "next/font/google";
-import { TRPCReactProvider } from "@/trpc/react";
-
-export const metadata = {
-  title: "Puzzlo",
-  description: "Every day, new password.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  applicationName: siteConfig.title,
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  creator: siteConfig.creator,
 };
 
-const inter = Inter({ subsets: ["latin"] });
+const MonaSans = localFont({
+  src: './Mona-Sans.woff2',
+  display: 'swap',
+});
 
 export default function RootLayout({
   children,
@@ -17,8 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="min-h-dvh  w-screen  bg-sky-500 ">
-      <body className={inter.className}>
+    <html
+      lang="en"
+      className={`min-h-dvh  w-screen  bg-sky-500 ${MonaSans.className}`}
+    >
+      <body>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
