@@ -30,3 +30,13 @@ model LeaderboardEntry {
 
   @@map("leaderboard_entries")
 }
+
+model UserActivity {
+  id          Int      @id @default(autoincrement())
+  pageName    String
+  createdAt   DateTime @default(now())
+  action_name String
+  visitor_ip  String
+
+  @@map("user_activities")
+}
