@@ -60,7 +60,7 @@ export default function Home() {
 
   const Footer = () => {
     return (
-      <div className="absolute bottom-10 flex w-full  flex-col items-center justify-center sm:bottom-20 md:bottom-48">
+      <div className="absolute bottom-10 flex w-full  flex-col items-center justify-center sm:bottom-20  md:bottom-28 lg:bottom-28">
         <footer className=" relative  bottom-0  mx-4  my-4  w-64 rounded-full border border-slate-500 p-3  text-center  text-black  hover:bg-slate-100  focus:bg-slate-100 sm:p-2  ">
           <p className=" text-xs">
             <span className="text-base">&copy;</span>{' '}
