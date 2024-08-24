@@ -23,7 +23,8 @@ const buttonStyle =
 const githubLink = 'https://github.com/thenameisajay';
 
 export default function Home() {
-  const { data, isPending, isError } = api.check.check.useQuery(undefined);
+  const { data, isPending, isError } =
+    api.check.ensureDailyLeaderboard.useQuery(undefined);
   const [ip, setIp] = useState<string>('');
 
   console.info({ data, isPending, isError });
@@ -66,7 +67,7 @@ export default function Home() {
         </div>
         <div className="">
           <Link href={playHref}>
-            <Button className={buttonStyle}>PLAY</Button>
+            <Button className={buttonStyle}>Play</Button>
           </Link>
         </div>
       </div>
@@ -75,7 +76,7 @@ export default function Home() {
 
   const Footer = () => {
     return (
-      <div className="absolute bottom-0 flex w-full flex-col items-center justify-center">
+      <div className="absolute bottom-10 flex w-full  flex-col items-center justify-center sm:bottom-20 md:bottom-48">
         <footer className=" relative  bottom-0  mx-4  my-4  w-64 rounded-full border border-slate-500 p-3  text-center  text-black  hover:bg-slate-100  focus:bg-slate-100 sm:p-2  ">
           <p className=" text-xs">
             <span className="text-base">&copy;</span>{' '}

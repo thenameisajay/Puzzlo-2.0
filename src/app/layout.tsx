@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import CookieComponent from '@/components/cookieComponent/Component';
 import { siteConfig } from '@/data/site/siteConfig';
 import { Providers } from '@/providers/providers';
 import '@/styles/globals.css';
@@ -25,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${MonaSans.className} bg-sky-500`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <CookieComponent />
+        </Providers>
       </body>
     </html>
   );
