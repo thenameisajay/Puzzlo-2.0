@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import ErrorComponent from '@/components/error/Component';
 import LoadingComponent from '@/components/loading/Component';
 import { Button } from '@/components/ui/button';
 import { useLeaderboard } from '@/providers/leaderboard/provider';
@@ -84,6 +85,8 @@ export default function Home() {
   console.log('isError:', isError);
 
   if (isPending) return <LoadingComponent />;
+
+  if (isError) return <ErrorComponent />;
   return (
     <div className=" flex h-dvh  w-full  flex-col items-center   justify-center bg-sky-500">
       <PageBanner />
