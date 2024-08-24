@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import CookieComponent from '@/components/cookieComponent/Component';
@@ -42,6 +43,7 @@ export default function RootLayout({
       </head>
       <body className={`${MonaSans.className} bg-sky-500`}>
         <Providers>
+          <Toaster />
           {children}
           <CookieComponent />
         </Providers>
