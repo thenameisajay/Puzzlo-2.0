@@ -38,6 +38,7 @@ export default function RootLayout({
           type="image/<generated>"
           sizes="<generated>"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className={`${MonaSans.className} bg-sky-500`}>
         <Providers>
