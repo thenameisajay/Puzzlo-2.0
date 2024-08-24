@@ -33,9 +33,9 @@ model LeaderboardEntry {
 
 model UserActivity {
   id          Int      @id @default(autoincrement())
-  pageName    String
-  createdAt   DateTime @default(now())
-  action_name String
+  page_name    String
+  created_at   String 
+  action_name String 
   visitor_ip  String
 
   @@map("user_activities")

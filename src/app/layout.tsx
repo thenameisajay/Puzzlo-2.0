@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { siteConfig } from '@/data/site/siteConfig';
+import { Providers } from '@/providers/provider';
 import '@/styles/globals.css';
-import { TRPCReactProvider } from '@/trpc/react';
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -28,7 +28,7 @@ export default function RootLayout({
       className={`min-h-dvh  w-screen  bg-sky-500 ${MonaSans.className}`}
     >
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
