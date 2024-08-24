@@ -5,14 +5,20 @@ import { usePathname } from 'next/navigation';
 import { api } from '@/trpc/react';
 import { type Leaderboard } from '@/types/interfaces/leaderboard/types';
 
-const defaultLeaderboard: Leaderboard = {
-  leaderboards: [],
-  date: new Date(),
-  password: 0,
+interface LeaderBoardContextType {
+  data?: Leaderboard | undefined;
+  isPending: boolean;
+  isError: boolean;
+}
+
+const defaultLeaderboardContext: LeaderBoardContextType = {
+  data: undefined,
+  isPending: false,
+  isError: false,
 };
 
-const LeaderboardContext = createContext<Leaderboard | undefined>(
-  defaultLeaderboard,
+const LeaderboardContext = createContext<LeaderBoardContextType | undefined>(
+  defaultLeaderboardContext,
 );
 
 export function LeaderboardProvider({
@@ -43,7 +49,7 @@ export function LeaderboardProvider({
 
   console.info('The Leaderboard Provider:', { data, isPending, isError });
   return (
-    <LeaderboardContext.Provider value={defaultLeaderboard}>
+    <LeaderboardContext.Provider value={{ data, isPending, isError }}>
       {children}
     </LeaderboardContext.Provider>
   );

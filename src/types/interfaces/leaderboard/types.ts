@@ -11,5 +11,5 @@ export interface Leaderboard {
   id?: number;
   date: Date;
   password: number;
-  leaderboards: LeaderboardEntry[];
+  leaderboards?: LeaderboardEntry[];
 }
