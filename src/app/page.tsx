@@ -1,6 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import LoadingComponent from '@/components/loading/Component';
 import { Button } from '@/components/ui/button';
+import { useLeaderboard } from '@/providers/leaderboard/provider';
 
 const title = 'PUZZLO';
 
@@ -73,7 +77,13 @@ export default function Home() {
       </div>
     );
   };
+  const { data, isPending, isError } = useLeaderboard() || {};
 
+  console.log('Leaderboard Data:', data);
+  console.log('isPending:', isPending);
+  console.log('isError:', isError);
+
+  if (isPending) return <LoadingComponent />;
   return (
     <div className=" flex h-dvh  w-full  flex-col items-center   justify-center bg-sky-500">
       <PageBanner />
