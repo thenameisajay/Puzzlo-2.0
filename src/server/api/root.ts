@@ -1,4 +1,5 @@
-import { checkRouter } from '@/server/api/routers/check';
+import { leaderboardRouter } from '@/server/api/routers/leaderboard/route';
+import { userActivityRouter } from '@/server/api/routers/userActivity/route';
 import { createCallerFactory, createTRPCRouter } from '@/server/api/trpc';
 
 /**
@@ -7,7 +8,8 @@ import { createCallerFactory, createTRPCRouter } from '@/server/api/trpc';
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  check: checkRouter,
+  check: leaderboardRouter,
+  userActivity: userActivityRouter,
 });
 
 // export type definition of API
