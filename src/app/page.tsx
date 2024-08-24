@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import dayjs from 'dayjs';
 import { getSessionIP } from '@/actions/session/sessionIP/actions';
 import { Button } from '@/components/ui/button';
 import { api } from '@/trpc/react';
-import { getLocalisedTime } from '@/utils/helpers/getLocalisedTime';
 
 const title = 'PUZZLO';
 
@@ -26,6 +26,8 @@ export default function Home() {
   const { data, isPending, isError } =
     api.check.ensureDailyLeaderboard.useQuery(undefined);
   const [ip, setIp] = useState<string>('');
+
+  const year = dayjs(new Date()).format('YYYY');
 
   console.info({ data, isPending, isError });
 
@@ -80,11 +82,7 @@ export default function Home() {
         <footer className=" relative  bottom-0  mx-4  my-4  w-64 rounded-full border border-slate-500 p-3  text-center  text-black  hover:bg-slate-100  focus:bg-slate-100 sm:p-2  ">
           <p className=" text-xs">
             <span className="text-base">&copy;</span>{' '}
-            <span className="  font-semibold">
-              {' '}
-              {getLocalisedTime(new Date())}
-            </span>
-            ,{' '}
+            <span className="  font-semibold"> {year}</span>,{' '}
             <a
               href={githubLink}
               target="_blank"
