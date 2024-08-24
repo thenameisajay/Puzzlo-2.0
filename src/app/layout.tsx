@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import CookieComponent from '@/components/cookieComponent/Component';
 import { siteConfig } from '@/data/site/siteConfig';
+import { Providers } from '@/providers/providers';
 import '@/styles/globals.css';
-import { TRPCReactProvider } from '@/trpc/react';
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -23,12 +24,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`min-h-dvh  w-screen  bg-sky-500 ${MonaSans.className}`}
-    >
-      <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+    <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="/icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/apple-icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body className={`${MonaSans.className} bg-sky-500`}>
+        <Providers>
+          {children}
+          <CookieComponent />
+        </Providers>
       </body>
     </html>
   );

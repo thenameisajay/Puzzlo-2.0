@@ -1,13 +1,13 @@
 import type { LeaderboardEntry } from '@prisma/client';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import { generateRandomPassword } from '@/actions/game/generateRandomPassword/actions';
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
-import { generateRandomPassword } from '@/utils/helpers/generateRandomPassword';
 
 dayjs.extend(utc);
 
-export const checkRouter = createTRPCRouter({
-  check: publicProcedure.query(async ({ ctx }) => {
+export const leaderboardRouter = createTRPCRouter({
+  ensureDailyLeaderboard: publicProcedure.query(async ({ ctx }) => {
     const currentUtcDate = dayjs().utc().startOf('day').toDate();
 
     const data = await ctx.db.leaderboard.findFirst({
