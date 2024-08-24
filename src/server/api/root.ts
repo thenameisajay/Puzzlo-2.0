@@ -1,4 +1,5 @@
-import { checkRouter } from '@/server/api/routers/check';
+import { checkRouter } from '@/server/api/routers/check/route';
+import { userActivityRouter } from '@/server/api/routers/sessionActitvity/route';
 import { createCallerFactory, createTRPCRouter } from '@/server/api/trpc';
 
 /**
@@ -8,6 +9,7 @@ import { createCallerFactory, createTRPCRouter } from '@/server/api/trpc';
  */
 export const appRouter = createTRPCRouter({
   check: checkRouter,
+  userActivity: userActivityRouter,
 });
 
 // export type definition of API

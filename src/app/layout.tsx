@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { siteConfig } from '@/data/site/siteConfig';
-import { Providers } from '@/providers/provider';
+import { Providers } from '@/providers/providers';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
@@ -23,11 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`min-h-dvh  w-screen  bg-sky-500 ${MonaSans.className}`}
-    >
-      <body>
+    <html lang="en">
+      <body className={`${MonaSans.className} bg-sky-500`}>
         <Providers>{children}</Providers>
       </body>
     </html>
