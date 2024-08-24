@@ -1,11 +1,6 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { getSessionIP } from '@/actions/session/sessionIP/actions';
 import { Button } from '@/components/ui/button';
-import { api } from '@/trpc/react';
 
 const title = 'PUZZLO';
 
@@ -23,25 +18,7 @@ const buttonStyle =
 const githubLink = 'https://github.com/thenameisajay';
 
 export default function Home() {
-  const { data, isPending, isError } =
-    api.check.ensureDailyLeaderboard.useQuery(undefined);
-  const [ip, setIp] = useState<string>('');
-
   const year = dayjs(new Date()).format('YYYY');
-
-  console.info({ data, isPending, isError });
-
-  useEffect(() => {
-    const fetchSessionIP = async () => {
-      const ipAddress = await getSessionIP();
-
-      setIp(ipAddress);
-
-      console.log({ ipAddress });
-    };
-
-    void fetchSessionIP();
-  }, []);
 
   const PageBanner = () => {
     return (
@@ -96,8 +73,6 @@ export default function Home() {
       </div>
     );
   };
-
-  console.log({ ip });
 
   return (
     <div className=" flex h-dvh  w-full  flex-col items-center   justify-center bg-sky-500">
