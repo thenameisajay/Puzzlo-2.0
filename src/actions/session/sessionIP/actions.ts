@@ -8,7 +8,7 @@ export const getSessionIP = async (): Promise<string> => {
   try {
     const acceptedCookies = await isCookiesAccepted();
 
-    if (!acceptedCookies) {
+    if (acceptedCookies === false) {
       const defaultIp = '0.0.0.0';
       await setIPCookie(defaultIp);
       return defaultIp;
