@@ -29,7 +29,7 @@ export function LeaderboardProvider({
   const pathname = usePathname();
 
   const { data, isPending, isError } =
-    api.check.ensureDailyLeaderboard.useQuery();
+    api.leaderboard.ensureDailyLeaderboard.useQuery();
 
   useEffect(() => {
     let isMounted = true;
