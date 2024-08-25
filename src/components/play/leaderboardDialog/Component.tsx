@@ -67,7 +67,7 @@ export default function LeaderboardDialogComponent({
       toast.dismiss();
       console.log('Leaderboard entry saved successfully:', data);
       toast.success('Leaderboard entry saved successfully');
-      router.push('/scoreboard ');
+      router.push('/leaderboard ');
     },
     onError: (err) => {
       toast.dismiss();

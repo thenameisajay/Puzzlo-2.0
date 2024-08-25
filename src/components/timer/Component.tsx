@@ -11,7 +11,7 @@ const formatTime = (totalSeconds: number) => {
 export default function TimerComponent({ seconds }: { seconds: number }) {
   return (
     <div
-      className="mb-6 font-mono text-6xl font-bold text-yellow-500"
+      className="mb-6 flex items-center justify-center font-mono text-6xl font-bold text-yellow-500"
       aria-live="polite"
     >
       {formatTime(seconds)}
