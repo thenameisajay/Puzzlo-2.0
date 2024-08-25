@@ -1,7 +1,7 @@
 'use client';
 
 import ErrorComponent from '@/components/error/Component';
-import ScoreboardComponent from '@/components/leaderboard/Component';
+import LeaderboardComponent from '@/components/leaderboard/Component';
 import LoadingComponent from '@/components/loading/Component';
 import DesktopNav from '@/components/navbars/desktop/Component';
 import MobileNav from '@/components/navbars/mobile/Component';
@@ -22,7 +22,7 @@ export default function Page() {
       <MobileNav />
       <DesktopNav />
       <div className="flex flex-grow  justify-center">
-        <ScoreboardComponent leaderboard={leaderboard} />
+        <LeaderboardComponent leaderboard={leaderboard} />
       </div>
     </div>
   );

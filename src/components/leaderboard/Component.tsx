@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { type LeaderboardEntry } from '@prisma/client';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import PageHeader from '../header/Component';
-import TimerComponent from '../timer/Component';
+import PageHeader from '@/components/header/Component';
+import { LeaderboardColumns } from '@/components/tables/data-table/columns/leaderboard/Component';
+import MainTableComponent from '@/components/tables/data-table/main-table/Component';
+import TimerComponent from '@/components/timer/Component';
 
 dayjs.extend(utc);
 
@@ -13,7 +15,7 @@ const pageTitle = 'Leaderboard';
 const pageDescription =
   'This board consists of the top 10 players in the game.';
 
-export default function ScoreboardComponent({
+export default function LeaderboardComponent({
   leaderboard,
 }: {
   leaderboard: LeaderboardEntry[];
@@ -56,15 +58,20 @@ export default function ScoreboardComponent({
   };
 
   return (
-    <>
-      <div className="flex flex-col">
-        <PageHeader
-          title={pageTitle}
-          description={pageDescription}
-          className="mb-4"
+    <div className="flex flex-col">
+      <PageHeader
+        title={pageTitle}
+        description={pageDescription}
+        className="mb-4"
+      />
+      <CustomisedTimerComponent />
+
+      <div className="flex w-full flex-col items-center justify-center">
+        <MainTableComponent
+          columns={LeaderboardColumns}
+          tableData={leaderboard}
         />
-        <CustomisedTimerComponent />
       </div>
-    </>
+    </div>
   );
 }
