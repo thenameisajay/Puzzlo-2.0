@@ -24,7 +24,7 @@ export const navConfig: MainNavItem[] = [
   },
   {
     icon: <Checkerboard className="h-5 w-5" />,
-    title: 'Scoreboard',
-    href: '/scoreboard',
+    title: 'Leaderboard',
+    href: '/leaderboard',
   },
 ];

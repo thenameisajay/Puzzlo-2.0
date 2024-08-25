@@ -13,7 +13,7 @@ const description = 'Every day, new password.';
 
 const howToPlayHref = '/how-to-play';
 
-const scoreboardHref = '/scoreboard';
+const leaderboardHref = '/leaderboard';
 
 const playHref = '/play';
 
@@ -45,8 +45,8 @@ export default function Home() {
           <Link href={howToPlayHref}>
             <Button className={buttonStyle}>How to Play ?</Button>
           </Link>
-          <Link href={scoreboardHref}>
-            <Button className={buttonStyle}>Scoreboard</Button>
+          <Link href={leaderboardHref}>
+            <Button className={buttonStyle}>Leaderboard</Button>
           </Link>
         </div>
         <div className="">
