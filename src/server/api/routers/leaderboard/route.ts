@@ -22,11 +22,14 @@ export const leaderboardRouter = createTRPCRouter({
       if (!data) {
         console.log('Creating new data, no previous data found.');
 
+        // Start of inserting random data of 7 users - furkan's idea
         const generateUsers = [];
 
         for (let i = 0; i < 7; i++) {
           generateUsers.push(generateNewUser());
         }
+
+        // End of inserting random data of 7 users - furkan's idea
 
         const newData = await ctx.db.leaderboard.create({
           data: {
