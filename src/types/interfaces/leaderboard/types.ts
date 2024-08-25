@@ -9,7 +9,7 @@ export interface LeaderboardEntryFormTypes {
 
 export interface Leaderboard {
   id?: number;
-  date: Date;
+  date?: Date;
   password: number;
   leaderboards?: LeaderboardEntryFormTypes[];
 }

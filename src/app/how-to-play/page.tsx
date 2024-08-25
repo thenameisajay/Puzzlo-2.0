@@ -8,9 +8,9 @@ import MobileNav from '@/components/navbars/mobile/Component';
 import { useLeaderboard } from '@/providers/leaderboard/provider';
 
 export default function Page() {
-  const { data, isPending, isError } = useLeaderboard() || {};
+  const { newData, isPending, isError } = useLeaderboard() || {};
 
-  console.log('Leaderboard Data:', data);
+  console.log('Leaderboard Data:', newData);
   console.log('isPending:', isPending);
   console.log('isError:', isError);
 

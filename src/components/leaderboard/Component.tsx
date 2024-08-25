@@ -67,10 +67,12 @@ export default function LeaderboardComponent({
       <CustomisedTimerComponent />
 
       <div className="flex w-full flex-col items-center justify-center">
-        <MainTableComponent
-          columns={LeaderboardColumns}
-          tableData={leaderboard}
-        />
+        {leaderboard && (
+          <MainTableComponent
+            columns={LeaderboardColumns}
+            tableData={leaderboard}
+          />
+        )}
       </div>
     </div>
   );
