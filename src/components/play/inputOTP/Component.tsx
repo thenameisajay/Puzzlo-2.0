@@ -131,7 +131,7 @@ export default function InputOTPComponent({ password }: { password: number }) {
   return (
     <div className="flex w-full flex-col items-center justify-center space-y-8">
       <Timer />
-      <div className=" flex h-24 items-center justify-center">
+      <div className=" flex items-center justify-center">
         {isPasswordLower !== null &&
           (isPasswordLower ? (
             <ArrowCircleUp className={arrowCustomStyle} />
