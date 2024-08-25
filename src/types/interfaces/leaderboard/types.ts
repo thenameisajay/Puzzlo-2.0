@@ -1,5 +1,5 @@
-export interface LeaderboardEntry {
-  id: number;
+export interface LeaderboardEntryFormTypes {
+  id?: number;
   username: string;
   numberOfTries: number;
   timeTaken: number;
@@ -11,5 +11,5 @@ export interface Leaderboard {
   id?: number;
   date: Date;
   password: number;
-  leaderboards: LeaderboardEntry[];
+  leaderboards?: LeaderboardEntryFormTypes[];
 }
