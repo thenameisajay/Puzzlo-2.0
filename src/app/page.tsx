@@ -78,9 +78,9 @@ export default function Home() {
       </div>
     );
   };
-  const { data, isPending, isError } = useLeaderboard() || {};
+  const { newData, isPending, isError } = useLeaderboard() || {};
 
-  console.log('Leaderboard Data:', data);
+  console.log('Leaderboard Data:', newData);
   console.log('isPending:', isPending);
   console.log('isError:', isError);
 

@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-import { isCookiesAccepted } from '@/actions/cookies/cookiesAccepted/actions';
-import { setCookiesAccepted as saveCookiesAccepted } from '@/actions/cookies/setCookies/actions';
+import { isCookiesAccepted } from '@/actions/cookies/cookies-accepted/actions';
+import { setCookiesAccepted as saveCookiesAccepted } from '@/actions/cookies/set-cookies/actions';
 import { Button } from '@/components/ui/button';
 
 export default function CookieComponent() {

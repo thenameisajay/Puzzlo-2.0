@@ -1,8 +1,9 @@
 import { type LeaderboardEntry } from '@prisma/client';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import { generateNewUser } from '@/actions/data-generation/actions';
-import { generateRandomPassword } from '@/actions/game/generateRandomPassword/actions';
+import { generateNewUser } from '@/server/actions/data-generation/actions';
+import { encryptPassword } from '@/server/actions/password/encrypt-password/actions';
+import { generateRandomPassword } from '@/server/actions/password/generate-random-password/actions';
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
 import { leaderboardEntrySchema } from '@/types/schema/play/leaderboardEntry/schema';
 
@@ -26,25 +27,37 @@ export const leaderboardRouter = createTRPCRouter({
         const generateUsers = [];
 
         for (let i = 0; i < 7; i++) {
-          generateUsers.push(generateNewUser());
+          const newUser = await generateNewUser();
+          generateUsers.push(newUser);
         }
 
         // End of inserting random data of 7 users - furkan's idea
 
+        const localPassword = (await generateRandomPassword()) as number;
+        const encryptedPassword = await encryptPassword(localPassword);
+
         const newData = await ctx.db.leaderboard.create({
           data: {
             date: currentUtcDate,
-            password: await generateRandomPassword(),
+            password: localPassword,
             leaderboard: {
               create: generateUsers as LeaderboardEntry[],
             },
           },
         });
-        return newData;
+        return {
+          ...newData,
+          password: encryptedPassword,
+        };
       }
 
       console.log('Data found, returning existing data.');
-      return data;
+      const localPassword = data.password;
+      const encryptedPassword = await encryptPassword(localPassword);
+      return {
+        ...data,
+        password: encryptedPassword,
+      };
     } catch (error) {
       console.error('Error fetching or creating leaderboard entry:', error);
       throw new Error('Unable to ensure daily leaderboard');
@@ -91,7 +104,13 @@ export const leaderboardRouter = createTRPCRouter({
         throw new Error('No leaderboard data found');
       }
 
-      return data;
+      const leaderboardData = data.leaderboard.map((entry) => {
+        return {
+          ...entry,
+        };
+      });
+
+      return leaderboardData;
     } catch (error) {
       console.error('Error fetching leaderboard:', error);
       throw new Error('Failed to fetch leaderboard');

@@ -1,8 +1,8 @@
 'use client';
 
 import axios from 'axios';
-import { isCookiesAccepted } from '@/actions/cookies/cookiesAccepted/actions';
-import { setIPCookie } from '@/actions/cookies/setIpCookie/actions';
+import { isCookiesAccepted } from '@/actions/cookies/cookies-accepted/actions';
+import { setIPCookie } from '@/actions/cookies/set-ip-cookie/actions';
 
 export const getSessionIP = async (): Promise<string> => {
   try {

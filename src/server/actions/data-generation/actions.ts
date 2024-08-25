@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export function generateNewUser() {
+export const generateNewUser = async (): Promise<object> => {
   const newUser = {
     username: faker.person.firstName().slice(0, 11),
     numberOfTries: 100,
@@ -8,7 +8,7 @@ export function generateNewUser() {
     score: Math.floor(Math.random() * 50001) + 50000,
   };
   return newUser;
-}
+};
 
 // Test the function
 for (let i = 0; i < 10; i++) {

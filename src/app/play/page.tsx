@@ -8,9 +8,9 @@ import PlayComponent from '@/components/play/Component';
 import { useLeaderboard } from '@/providers/leaderboard/provider';
 
 export default function Page() {
-  const { data, isPending, isError } = useLeaderboard() || {};
+  const { newData, isPending, isError } = useLeaderboard() || {};
 
-  console.log('Leaderboard Data:', data);
+  console.log('Leaderboard Data:', newData);
   console.log('isPending:', isPending);
   console.log('isError:', isError);
 
@@ -18,9 +18,9 @@ export default function Page() {
 
   if (isError) return <ErrorComponent />;
 
-  const password = data?.password || 0;
+  const password = newData?.password || 0;
 
-  const leaderboardID = data?.id || 0;
+  const leaderboardID = newData?.id || 0;
 
   return (
     <div className="flex min-h-screen flex-col bg-sky-500 p-6 md:p-12">
