@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { ArrowCircleDown, ArrowCircleUp } from '@phosphor-icons/react';
 import confetti from 'canvas-confetti';
@@ -23,6 +23,8 @@ const puzzloCustomStyle = `2xl:text-6xl h-16 w-16 text-base text-white md:text-x
 
 const arrowCustomStyle = 'animate-pulse text-7xl text-yellow-500 lg:text-8xl ';
 
+const CELEBRATION_DURATION = 3000;
+
 export default function PlayComponent({
   password,
   leaderboardID,
@@ -44,9 +46,14 @@ export default function PlayComponent({
   const [tries, setTries] = useState(1);
   const [score, setScore] = useState(0);
 
+  const showToast = (message: string) => {
+    toast.dismiss();
+    toast.error(message);
+  };
+
   const celebrationClick = () => {
     console.log('Celebration click is activated');
-    const end = Date.now() + 3 * 1000; // 3 seconds
+    const end = Date.now() + CELEBRATION_DURATION;
     const colors = ['#66d9ff', '#ffffff', '#fff7a3', '#ff7f50'];
 
     const frame = () => {
@@ -76,10 +83,15 @@ export default function PlayComponent({
     frame();
   };
 
-  const validatePinEntry = () => {
+  // Wrap validatePinEntry in useCallback to avoid changing its reference
+  const validatePinEntry = useCallback(() => {
     toast.dismiss();
     const verifyPassword = checkPassword(password, value);
     if (verifyPassword === 0) {
+      // Stop the timer
+      if (timerId.current) {
+        clearInterval(timerId.current);
+      }
       setCorrectPassword(true);
       setScore(calculateScore(secondsElapsed, tries));
       celebrationClick();
@@ -88,32 +100,46 @@ export default function PlayComponent({
       setTries(tries + 1);
       setIsPasswordHigher(false);
       setValue('');
-      toast.error('Try a lower number');
+      showToast('Try a lower number');
     } else {
       setTries(tries + 1);
       setValue('');
       setIsPasswordHigher(true);
-      toast.error('Try a higher number');
+      showToast('Try a higher number');
     }
-  };
+  }, [password, value, secondsElapsed, tries]);
 
   const timerId = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const startTime = Date.now(); // Start the timer immediately when the component mounts
+    const startTime = Date.now();
 
     timerId.current = setInterval(() => {
       const duration = Math.floor((Date.now() - startTime) / 1000);
       setSecondsElapsed(duration);
     }, 1000);
 
-    // Clean up the interval when the component unmounts
     return () => {
       if (timerId.current) {
         clearInterval(timerId.current);
       }
     };
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        validatePinEntry();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [validatePinEntry]);
 
   console.log('Password is:', password);
   console.log('Value is:', value);
