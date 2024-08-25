@@ -4,7 +4,7 @@ import ErrorComponent from '@/components/error/Component';
 import LoadingComponent from '@/components/loading/Component';
 import DesktopNav from '@/components/navbars/desktop/Component';
 import MobileNav from '@/components/navbars/mobile/Component';
-import InputOTPComponent from '@/components/play/inputOTP/Component';
+import PlayComponent from '@/components/play/Component';
 import { useLeaderboard } from '@/providers/leaderboard/provider';
 
 export default function Page() {
@@ -25,7 +25,7 @@ export default function Page() {
       <MobileNav />
       <DesktopNav />
       <div className="flex flex-grow items-center justify-center">
-        <InputOTPComponent password={password} />
+        <PlayComponent password={password} />
       </div>
     </div>
   );

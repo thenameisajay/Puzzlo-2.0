@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { ArrowCircleDown, ArrowCircleUp } from '@phosphor-icons/react';
+import confetti from 'canvas-confetti';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { Button } from '@/components/ui/button';
@@ -14,7 +15,7 @@ import {
 
 dayjs.extend(utc);
 
-export default function InputOTPComponent({ password }: { password: number }) {
+export default function PlayComponent({ password }: { password: number }) {
   const [value, setValue] = useState('');
   const [isPasswordLower, setIsPasswordLower] = useState<boolean | null>(null);
   const [correctPassword, setCorrectPassword] = useState<boolean | undefined>(
@@ -30,6 +31,38 @@ export default function InputOTPComponent({ password }: { password: number }) {
 
   const arrowCustomStyle =
     'animate-pulse text-7xl text-yellow-500 lg:text-8xl ';
+
+  const celebrationClick = () => {
+    console.log('Celebration click is activated');
+    const end = Date.now() + 3 * 1000; // 3 seconds
+    const colors = ['#66d9ff', '#ffffff', '#fff7a3', '#ff7f50'];
+
+    const frame = () => {
+      void confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 0, y: 0.5 },
+        colors: colors,
+      });
+
+      void confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 1, y: 0.5 },
+        colors: colors,
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    frame();
+  };
 
   const calculateScore = (tries: number, secondsElapsed: number) => {
     const nowUtc = dayjs().utc();
@@ -66,6 +99,7 @@ export default function InputOTPComponent({ password }: { password: number }) {
     toast.dismiss();
     if (value === password.toString()) {
       // Handle correct password
+      celebrationClick();
       console.log('Correct password');
       setIsPasswordLower(null);
       toast.success('You guessed the correct password!');
@@ -75,12 +109,12 @@ export default function InputOTPComponent({ password }: { password: number }) {
     } else if (value < password.toString()) {
       setTries(tries + 1);
       setIsPasswordLower(true);
-
+      setValue('');
       toast.error('Your guess is too low!');
     } else {
       setTries(tries + 1);
       setIsPasswordLower(false);
-
+      setValue('');
       toast.error('Your guess is too high!');
     }
   };
