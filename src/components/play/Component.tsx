@@ -23,7 +23,7 @@ const puzzloCustomStyle = `2xl:text-6xl h-16 w-16 text-base text-white md:text-x
 
 const arrowCustomStyle = 'animate-pulse text-7xl text-yellow-500 lg:text-8xl ';
 
-const CELEBRATION_DURATION = 3000; // 3 seconds
+const CELEBRATION_DURATION = 3000;
 
 export default function PlayComponent({
   password,
@@ -112,14 +112,13 @@ export default function PlayComponent({
   const timerId = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const startTime = Date.now(); // Start the timer immediately when the component mounts
+    const startTime = Date.now();
 
     timerId.current = setInterval(() => {
       const duration = Math.floor((Date.now() - startTime) / 1000);
       setSecondsElapsed(duration);
     }, 1000);
 
-    // Clean up the interval  when the component unmounts
     return () => {
       if (timerId.current) {
         clearInterval(timerId.current);
