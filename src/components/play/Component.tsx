@@ -152,44 +152,46 @@ export default function PlayComponent({
   return (
     <div className="flex w-full flex-col items-center justify-center space-y-8">
       <TimerComponent seconds={secondsElapsed} />
-      <div className=" flex items-center justify-center">
-        {isPasswordHigher !== null &&
-          (isPasswordHigher ? (
-            <ArrowCircleUp className={arrowCustomStyle} />
-          ) : (
-            <ArrowCircleDown className={arrowCustomStyle} />
-          ))}
-      </div>
-      <InputOTP
-        maxLength={4}
-        value={value}
-        onChange={(value) => setValue(value)}
-      >
-        <InputOTPGroup>
-          <InputOTPSlot className={puzzloCustomStyle} index={0} />
-          <InputOTPSlot className={puzzloCustomStyle} index={1} />
-          <InputOTPSlot className={puzzloCustomStyle} index={2} />
-          <InputOTPSlot className={puzzloCustomStyle} index={3} />
-        </InputOTPGroup>
-      </InputOTP>
-      <div className="text-center text-xl text-white md:text-3xl xl:text-5xl   ">
-        {value === '' ? (
-          <>Enter your guessing number...</>
-        ) : (
-          <>You entered: {value}</>
-        )}
-      </div>
-      <div className="flex w-full items-center justify-center">
-        <Button
-          type="button"
-          size={'lg'}
-          className="bg-yellow-500 text-lg text-white hover:bg-yellow-600"
-          onClick={validatePinEntry}
-          disabled={correctPassword || value === ''}
+      <>
+        <div className=" flex items-center justify-center">
+          {isPasswordHigher !== null &&
+            (isPasswordHigher ? (
+              <ArrowCircleUp className={arrowCustomStyle} />
+            ) : (
+              <ArrowCircleDown className={arrowCustomStyle} />
+            ))}
+        </div>
+        <InputOTP
+          maxLength={4}
+          value={value}
+          onChange={(value) => setValue(value)}
         >
-          Enter
-        </Button>
-      </div>
+          <InputOTPGroup>
+            <InputOTPSlot className={puzzloCustomStyle} index={0} />
+            <InputOTPSlot className={puzzloCustomStyle} index={1} />
+            <InputOTPSlot className={puzzloCustomStyle} index={2} />
+            <InputOTPSlot className={puzzloCustomStyle} index={3} />
+          </InputOTPGroup>
+        </InputOTP>
+        <div className="text-center text-xl text-white md:text-3xl xl:text-5xl   ">
+          {value === '' ? (
+            <>Enter your guessing number...</>
+          ) : (
+            <>You entered: {value}</>
+          )}
+        </div>
+        <div className="flex w-full items-center justify-center">
+          <Button
+            type="button"
+            size={'lg'}
+            className="bg-yellow-500 text-lg text-white hover:bg-yellow-600"
+            onClick={validatePinEntry}
+            disabled={correctPassword || value === ''}
+          >
+            Enter
+          </Button>
+        </div>
+      </>
       <LeaderboardDialogComponent
         secondsElapsed={secondsElapsed}
         showDialog={showDialog}

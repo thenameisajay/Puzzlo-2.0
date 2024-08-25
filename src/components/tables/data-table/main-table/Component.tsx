@@ -13,9 +13,7 @@ export default function MainTableComponent<T>({
   return (
     <>
       <section className="min-w-full">
-        <div className="mt-6 min-w-full rounded-lg border bg-white p-4 shadow-md">
-          <DataTable columns={columns} data={tableData} />
-        </div>
+        <DataTable columns={columns} data={tableData} />
       </section>
     </>
   );

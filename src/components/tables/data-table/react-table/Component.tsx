@@ -59,15 +59,22 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 rounded-lg bg-white bg-opacity-90 p-6 shadow-lg">
       <DataTableToolbar table={table} />
-      <div className="overflow-x-auto rounded-md border">
-        <Table className="min-w-full">
-          <TableHeader>
+      <div className="overflow-x-auto rounded-md border border-sky-200">
+        <Table className="min-w-full bg-white">
+          <TableHeader className="bg-sky-100">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow
+                key={headerGroup.id}
+                className="border-b border-sky-200"
+              >
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} colSpan={header.colSpan}>
+                  <TableHead
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    className="px-4 py-3 text-left text-sm font-semibold text-sky-800"
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -85,9 +92,13 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  className="border-b border-sky-100 transition-colors hover:bg-sky-50"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-4 py-2">
+                    <TableCell
+                      key={cell.id}
+                      className="px-4 py-3 text-sm text-sky-900"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),
@@ -100,7 +111,7 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 px-4 py-2 text-center"
+                  className="h-24 px-4 py-3 text-center text-sm text-sky-700"
                 >
                   No results.
                 </TableCell>

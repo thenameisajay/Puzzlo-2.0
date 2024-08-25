@@ -26,7 +26,11 @@ const HowToPlayFooter = () => {
 export default function HowToPlayComponent() {
   return (
     <div className="mx-auto max-w-4xl">
-      <PageHeader title={pageTitle} description={pageDescription} />
+      <PageHeader
+        title={pageTitle}
+        description={pageDescription}
+        className="mb-4"
+      />
       <HowToPlayBodyComponent />
       <HowToPlayFooter />
     </div>
