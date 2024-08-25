@@ -232,7 +232,7 @@ export default function PlayComponent({ password }: { password: number }) {
           Enter
         </Button>
       </div>
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      <Dialog open={showDialog}>
         <DialogContent
           className="border-2
         border-yellow-500
@@ -245,13 +245,14 @@ export default function PlayComponent({ password }: { password: number }) {
             </DialogTitle>
             <DialogDescription className="text-base text-white">
               You guessed the correct PIN in {tries} tries and your score is{' '}
-              {score}!
+              {score}! Please enter your username to save your score.
+              <br />
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="username" className="text-right text-white">
-                Username
+                Username :
               </Label>
               <Input
                 id="username"
