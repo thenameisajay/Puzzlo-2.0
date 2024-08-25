@@ -38,7 +38,6 @@
     "@trpc/react-query": "next",
     "@trpc/server": "next",
     "axios": "^1.7.5",
-    "bcrypt": "^5.1.1",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
