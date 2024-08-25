@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
-export const calculateScore = (tries: number, secondsElapsed: number) => {
+export const scoreEngine = (tries: number, secondsElapsed: number) => {
   const nowUtc = dayjs().utc();
 
   // Extract hours, minutes, and seconds
@@ -35,7 +35,7 @@ export const calculateScore = (tries: number, secondsElapsed: number) => {
 };
 
 // Test the function
-console.log('Score 1 : ', calculateScore(100, 10));
-console.log('Score 2 : ', calculateScore(2, 10));
-console.log('Score Perfect : ', calculateScore(1, 1));
-console.log('Score 3 : ', calculateScore(2, 2));
+console.log('Score 1 : ', scoreEngine(100, 10));
+console.log('Score 2 : ', scoreEngine(2, 10));
+console.log('Score Perfect : ', scoreEngine(1, 1));
+console.log('Score 3 : ', scoreEngine(2, 2));

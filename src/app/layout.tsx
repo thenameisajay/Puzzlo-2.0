@@ -1,7 +1,7 @@
 import { Toaster } from 'react-hot-toast';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import CookieComponent from '@/components/cookieComponent/Component';
+import CookieComponent from '@/components/cookie-component/Component';
 import { siteConfig } from '@/data/site/data';
 import { Providers } from '@/providers/providers';
 import '@/styles/globals.css';

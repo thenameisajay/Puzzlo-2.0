@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { getSessionIP } from '@/actions/session/sessionIP/actions';
+import { getSessionIP } from '@/actions/session/session-ip/actions';
 import { api } from '@/trpc/react';
 import { type UserActivity } from '@/types/interfaces/userActivity/types';
 

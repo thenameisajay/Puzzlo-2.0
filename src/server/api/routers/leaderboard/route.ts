@@ -2,7 +2,7 @@ import { type LeaderboardEntry } from '@prisma/client';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { generateNewUser } from '@/actions/data-generation/actions';
-import { generateRandomPassword } from '@/actions/game/generateRandomPassword/actions';
+import { generateRandomPassword } from '@/actions/game/generate-random-password/actions';
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
 import { leaderboardEntrySchema } from '@/types/schema/play/leaderboardEntry/schema';
 
