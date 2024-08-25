@@ -15,14 +15,12 @@ export default function Page() {
 
   if (isError) return <ErrorComponent />;
 
-  const { leaderboard } = data;
-
   return (
     <div className="flex min-h-screen flex-col bg-sky-500 p-6 md:p-12">
       <MobileNav />
       <DesktopNav />
       <div className="flex flex-grow  justify-center">
-        <LeaderboardComponent leaderboard={leaderboard} />
+        <LeaderboardComponent leaderboard={data} />
       </div>
     </div>
   );

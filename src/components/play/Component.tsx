@@ -4,8 +4,9 @@ import { ArrowCircleDown, ArrowCircleUp } from '@phosphor-icons/react';
 import confetti from 'canvas-confetti';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import { checkPassword } from '@/actions/checkPassword/actions';
-import { calculateScore } from '@/actions/scoreEngine/actions';
+import { checkPassword } from '@/actions/password/check-password/actions';
+import { scoreEngine } from '@/actions/score-engine/actions';
+import LeaderboardDialogComponent from '@/components/play/leaderboard-dialog/Component';
 import TimerComponent from '@/components/timer/Component';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,7 +14,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
-import LeaderboardDialogComponent from './leaderboardDialog/Component';
 
 dayjs.extend(utc);
 
@@ -93,7 +93,8 @@ export default function PlayComponent({
         clearInterval(timerId.current);
       }
       setCorrectPassword(true);
-      setScore(calculateScore(secondsElapsed, tries));
+      const localScore = scoreEngine(secondsElapsed, tries);
+      setScore(localScore);
       celebrationClick();
       setShowDialog(true);
     } else if (verifyPassword === 1) {
