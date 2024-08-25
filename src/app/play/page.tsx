@@ -20,12 +20,14 @@ export default function Page() {
 
   const password = data?.password || 0;
 
+  const leaderboardID = data?.id || 0;
+
   return (
     <div className="flex min-h-screen flex-col bg-sky-500 p-6 md:p-12">
       <MobileNav />
       <DesktopNav />
       <div className="flex flex-grow items-center justify-center">
-        <PlayComponent password={password} />
+        <PlayComponent password={password} leaderboardID={leaderboardID} />
       </div>
     </div>
   );
