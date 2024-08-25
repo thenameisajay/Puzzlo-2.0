@@ -250,9 +250,12 @@ export default function PlayComponent({ password }: { password: number }) {
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right text-white">
-                Username :
+            <div className="grid grid-cols-4 items-center gap-6">
+              <Label
+                htmlFor="username"
+                className="text-right text-white lg:text-base"
+              >
+                Username
               </Label>
               <Input
                 id="username"
@@ -265,7 +268,7 @@ export default function PlayComponent({ password }: { password: number }) {
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="flex flex-row items-center  justify-center space-x-2 ">
             <Button
               onClick={handleSave}
               className="bg-yellow-500 text-lg text-white hover:bg-yellow-600"
@@ -275,7 +278,7 @@ export default function PlayComponent({ password }: { password: number }) {
             <Button
               onClick={handleExit}
               variant="outline"
-              className="bg-white text-yellow-500 hover:bg-sky-100"
+              className="bg-white text-lg text-yellow-500 hover:bg-sky-100"
             >
               Exit
             </Button>
