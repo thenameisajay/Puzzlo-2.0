@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { ArrowCircleDown, ArrowCircleUp } from '@phosphor-icons/react';
 import confetti from 'canvas-confetti';
@@ -76,7 +76,8 @@ export default function PlayComponent({
     frame();
   };
 
-  const validatePinEntry = () => {
+  // Wrap validatePinEntry in useCallback to avoid changing its reference
+  const validatePinEntry = useCallback(() => {
     toast.dismiss();
     const verifyPassword = checkPassword(password, value);
     if (verifyPassword === 0) {
@@ -95,7 +96,7 @@ export default function PlayComponent({
       setIsPasswordHigher(true);
       toast.error('Try a higher number');
     }
-  };
+  }, [password, value, secondsElapsed, tries]);
 
   const timerId = useRef<NodeJS.Timeout | null>(null);
 
@@ -107,13 +108,28 @@ export default function PlayComponent({
       setSecondsElapsed(duration);
     }, 1000);
 
-    // Clean up the interval when the component unmounts
+    // Clean up the interval  when the component unmounts
     return () => {
       if (timerId.current) {
         clearInterval(timerId.current);
       }
     };
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        validatePinEntry();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [validatePinEntry]);
 
   console.log('Password is:', password);
   console.log('Value is:', value);
