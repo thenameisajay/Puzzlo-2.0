@@ -61,4 +61,29 @@ export const leaderboardRouter = createTRPCRouter({
         throw new Error('Failed to create leaderboard entry');
       }
     }),
+  getLeaderboard: publicProcedure.query(async ({ ctx }) => {
+    const currentUtcDate = dayjs().utc().startOf('day').toDate();
+    try {
+      const data = await ctx.db.leaderboard.findFirst({
+        where: {
+          date: currentUtcDate,
+        },
+        include: {
+          leaderboard: {
+            orderBy: [{ score: 'desc' }, { timeTaken: 'asc' }],
+            take: 10, // Limited to only 10 entries
+          },
+        },
+      });
+
+      if (!data) {
+        throw new Error('No leaderboard data found');
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error fetching leaderboard:', error);
+      throw new Error('Failed to fetch leaderboard');
+    }
+  }),
 });
