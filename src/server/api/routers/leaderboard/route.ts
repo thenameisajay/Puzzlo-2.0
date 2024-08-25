@@ -1,6 +1,7 @@
 import { type LeaderboardEntry } from '@prisma/client';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import { generateNewUser } from '@/actions/data-generation/actions';
 import { generateRandomPassword } from '@/actions/game/generateRandomPassword/actions';
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
 import { leaderboardEntrySchema } from '@/types/schema/play/leaderboardEntry/schema';
@@ -20,12 +21,19 @@ export const leaderboardRouter = createTRPCRouter({
 
       if (!data) {
         console.log('Creating new data, no previous data found.');
+
+        const generateUsers = [];
+
+        for (let i = 0; i < 7; i++) {
+          generateUsers.push(generateNewUser());
+        }
+
         const newData = await ctx.db.leaderboard.create({
           data: {
             date: currentUtcDate,
             password: await generateRandomPassword(),
             leaderboard: {
-              create: [] as LeaderboardEntry[],
+              create: generateUsers as LeaderboardEntry[],
             },
           },
         });
