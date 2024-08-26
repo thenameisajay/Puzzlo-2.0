@@ -1,3 +1,7 @@
+Here's an updated version of the `README.md` that includes a reference to the `INSTALL.md` file for local installation instructions:
+
+---
+
 # Puzzlo 2.0
 
 ## Overview
@@ -63,6 +67,10 @@ Puzzlo 2.0 is the enhanced version of the original Puzzlo, a game that started a
 
 - **Consistency & Reliability:** Declaring static data types for both client and server ensures data consistency across the application, reducing the likelihood of errors.
 - **Error Reduction:** This approach minimizes the risk of data mismatches, improving the game's reliability.
+
+## Installation
+
+To set up Puzzlo 2.0 for local development, please refer to the [INSTALL.md](./INSTALL.md) file for detailed instructions. This guide will walk you through setting up your environment, configuring the database, and running the application locally.
 
 ## Contributors
 

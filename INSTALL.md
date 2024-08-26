@@ -87,4 +87,4 @@ This will stop the PostgreSQL container and clean up the resources.
 
 ---
 
-You're all set! Your local development environment for Puzzlo 2.0 should now be up and running. Happy coding!
+You're all set! Your local development environment for Puzzlo 2.0 should now be up and running. Happy coding :)
