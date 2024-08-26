@@ -35,6 +35,13 @@ export default function LeaderboardComponent({
     const interval = setInterval(() => {
       const now = dayjs().utc();
       const newTimeDifference = nextResetTime.diff(now, 'second');
+
+      // If the time difference is less  0r equal to  0, reset the time and reload the leaderboard - bug fix for the timer
+      if (newTimeDifference <= 0) {
+        setResetLeaderboardTime(0);
+        window.location.reload(); // This would refresh the page and the mutation would be called again.
+      }
+
       setResetLeaderboardTime(newTimeDifference);
     }, 1000);
 
