@@ -74,7 +74,7 @@ export const leaderboardRouter = createTRPCRouter({
             username: input.username,
             numberOfTries: input.numberOfTries,
             score: input.score,
-            timeTaken: input.numberOfTries,
+            timeTaken: input.timeTaken,
             leaderboardId: input.leaderboardId,
           },
         });

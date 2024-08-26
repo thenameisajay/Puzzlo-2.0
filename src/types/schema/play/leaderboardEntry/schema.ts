@@ -5,6 +5,7 @@ export const leaderboardEntrySchema = z.object({
   score: z.number(),
   numberOfTries: z.number(),
   leaderboardId: z.number(),
+  timeTaken: z.number(),
 });
 
 export type LeaderboardEntryType = z.infer<typeof leaderboardEntrySchema>;
