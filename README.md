@@ -17,7 +17,7 @@ Puzzlo 2.0 is the enhanced version of the original Puzzlo, a game that started a
 
 ### 2. **Secure Password Transmission**
 
-- **Asymmetric Encryption:** At the start of each UTC day, the password is generated and encrypted using asymmetric key encryption. This secure method ensures that the password remains confidential during transmission to the client.
+- **Symmetric Encryption:** At the start of each UTC day, the password is generated and encrypted using symmetric key encryption. This secure method ensures that the password remains confidential during transmission to the client.
 - **Decryption Upon Validation:** The encrypted password is only decrypted on the client side during a validation check, enhancing security and preventing unauthorized access.
 - **Benefits:** This approach ensures that the password is never exposed during transmission, protecting the integrity of the game. It also provides a robust mechanism for preventing cheating, as the password can only be accessed when all conditions are met.
 
