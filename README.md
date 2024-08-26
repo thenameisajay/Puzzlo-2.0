@@ -1,7 +1,3 @@
-Here's an updated version of the `README.md` that includes a reference to the `INSTALL.md` file for local installation instructions:
-
----
-
 # Puzzlo 2.0
 
 ## Overview
