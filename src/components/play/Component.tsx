@@ -131,6 +131,7 @@ export default function PlayComponent({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         e.preventDefault();
+        if (correctPassword) return;
         validatePinEntry();
       }
     };
@@ -140,7 +141,7 @@ export default function PlayComponent({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [validatePinEntry]);
+  }, [validatePinEntry, correctPassword]);
 
   console.log('Password is:', password);
   console.log('Value is:', value);
