@@ -1,7 +1,8 @@
 export const checkPassword = (password: number, value: string) => {
-  if (value === password.toString()) {
+  const numValue = Number(value);
+  if (numValue === password) {
     return 0;
-  } else if (value > password.toString()) {
+  } else if (numValue > password) {
     return 1;
   } else {
     return -1;
